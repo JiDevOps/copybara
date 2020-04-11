@@ -10,3 +10,5 @@ jobs:
     - name: Copybara action step
       id: copybara
       uses: JiDevOps/copybara@master
+        with:
+          GITHUB: 'https://github.com/JiDevOps/copybara.git'

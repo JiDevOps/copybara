@@ -42,7 +42,7 @@ RUN apt-get update \
 
 WORKDIR /usr/src/app
 
-RUN git clone https://github.com/JiDevOps/TestingTestTest.git
+RUN git clone $INPUT_GITHUB
 # git clone repo into the above directory
 
 RUN echo $INPUT_SUBCOMMAND

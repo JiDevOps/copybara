@@ -2,6 +2,9 @@
 name: 'Copybara'
 description: 'Transform and move code between repositories'
 inputs:
+  GITHUB:
+    description: 'Source GITHUB URL address'
+    required: true
   CONFIG:  
     description: 'Allows you to specify a path to a config file'
     required: false
@@ -27,6 +30,7 @@ runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
+    - ${{ inputs.GITHUB }}
     - ${{ inputs.CONFIG }}
     - ${{ inputs.SUBCOMMAND }}
     - ${{ inputs.OPTIONS }}
