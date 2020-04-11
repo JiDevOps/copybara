@@ -35,5 +35,14 @@ COPY .docker/entrypoint.sh /usr/local/bin/copybara/entrypoint.sh
 RUN chmod +x /usr/local/bin/copybara
 RUN chmod +x /usr/local/bin/copybara/entrypoint.sh
 
+# Install git for fun times
+RUN apt-get update \
+    && apt-get install -y git \
+    && apt-get clean
+
+WORKDIR /usr/src/app
+RUN git clone https://github.com/JiDevOps/TestingTestTest.git
+# git clone repo into the above directory
+
 # Code file to execute when the docker container starts up (`entrypoint.sh`)
 ENTRYPOINT ["/usr/local/bin/copybara/entrypoint.sh"]
