@@ -17,4 +17,4 @@
 git clone $INPUT_GITHUB
 cd copybara
 ls
-java -jar copybara_deploy.jar $INPUT_OPTIONS $INPUT_SUBCOMMAND $INPUT_CONFIG $INPUT_WORKFLOW $INPUT_SOURCEREF
+java -jar /opt/copybara/copybara_deploy.jar $INPUT_OPTIONS $INPUT_SUBCOMMAND $INPUT_CONFIG $INPUT_WORKFLOW $INPUT_SOURCEREF

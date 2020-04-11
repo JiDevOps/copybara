@@ -28,7 +28,7 @@ RUN go get github.com/bazelbuild/buildtools/buildozer
 RUN go get github.com/bazelbuild/buildtools/buildifier
 
 FROM openjdk:8-jre-slim
-COPY --from=build /tmp/copybara/ /usr/src/app/copybara/
+COPY --from=build /tmp/copybara/ /opt/copybara/
 COPY --from=buildtools /go/bin/buildozer /go/bin/buildifier /usr/bin/
 COPY .docker/entrypoint.sh /usr/local/bin/copybara/entrypoint.sh
 
