@@ -41,8 +41,11 @@ RUN apt-get update \
     && apt-get clean
 
 WORKDIR /usr/src/app
+
 RUN git clone https://github.com/JiDevOps/TestingTestTest.git
 # git clone repo into the above directory
+
+RUN echo $INPUT_SUBCOMMAND
 
 # Code file to execute when the docker container starts up (`entrypoint.sh`)
 ENTRYPOINT ["/usr/local/bin/copybara/entrypoint.sh"]
