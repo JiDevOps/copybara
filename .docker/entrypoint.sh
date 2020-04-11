@@ -14,4 +14,5 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+git clone $INPUT_GITHUB
 java -jar /opt/copybara/copybara_deploy.jar $INPUT_OPTIONS $INPUT_SUBCOMMAND $INPUT_CONFIG $INPUT_WORKFLOW $INPUT_SOURCEREF
