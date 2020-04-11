@@ -14,4 +14,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-java -jar /opt/copybara/copybara_deploy.jar $COPYBARA_OPTIONS $COPYBARA_SUBCOMMAND $COPYBARA_CONFIG $COPYBARA_WORKFLOW $COPYBARA_SOURCEREF
+printenv
+ls
+cd /opt/copybara
+ls
+# java -jar /opt/copybara/copybara_deploy.jar $INPUT_OPTIONS $INPUT_SUBCOMMAND $INPUT_CONFIG $INPUT_WORKFLOW $INPUT_SOURCEREF

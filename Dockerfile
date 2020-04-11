@@ -22,9 +22,6 @@ RUN bazel build //java/com/google/copybara:copybara_deploy.jar \
     && mkdir -p /tmp/copybara \
     && cp bazel-bin/java/com/google/copybara/copybara_deploy.jar /tmp/copybara/
 
-# Fails currently
-# RUN bazel test //...
-
 FROM golang:latest AS buildtools
 
 RUN go get github.com/bazelbuild/buildtools/buildozer
@@ -38,13 +35,11 @@ ENV COPYBARA_CONFIG=copy.bara.sky \
     COPYBARA_SOURCEREF=''
 COPY --from=build /tmp/copybara/ /opt/copybara/
 COPY --from=buildtools /go/bin/buildozer /go/bin/buildifier /usr/bin/
-COPY .docker/entrypoint.sh /usr/local/bin/copybara
+COPY .docker/entrypoint.sh /usr/local/bin/copybara/entrypoint.sh
 
 RUN chmod +x /usr/local/bin/copybara
 
-# Install git for fun times
-RUN apt-get update \
-    && apt-get install -y git \
-    && apt-get clean
-
 WORKDIR /usr/src/app
+
+# Code file to execute when the docker container starts up (`entrypoint.sh`)
+ENTRYPOINT ["/usr/local/bin/copybara/entrypoint.sh"]

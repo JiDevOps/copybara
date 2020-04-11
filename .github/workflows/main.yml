@@ -1,0 +1,12 @@
+name: Copybara
+
+on: [push]
+
+jobs:
+  copybara:
+    runs-on: ubuntu-latest
+    name: A job to perform copybara
+    steps:
+    - name: Copybara action step
+      id: copybara
+      uses: JiDevOps/copybara@master
