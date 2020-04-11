@@ -18,4 +18,4 @@ printenv
 ls
 cd /opt/copybara
 ls
-# java -jar /opt/copybara/copybara_deploy.jar $INPUT_OPTIONS $INPUT_SUBCOMMAND $INPUT_CONFIG $INPUT_WORKFLOW $INPUT_SOURCEREF
+java -jar /opt/copybara/copybara_deploy.jar $INPUT_OPTIONS $INPUT_SUBCOMMAND $INPUT_CONFIG $INPUT_WORKFLOW $INPUT_SOURCEREF

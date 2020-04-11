@@ -40,7 +40,5 @@ COPY .docker/entrypoint.sh /usr/local/bin/copybara/entrypoint.sh
 RUN chmod +x /usr/local/bin/copybara
 RUN chmod +x /usr/local/bin/copybara/entrypoint.sh
 
-WORKDIR /usr/src/app
-
 # Code file to execute when the docker container starts up (`entrypoint.sh`)
 ENTRYPOINT ["/usr/local/bin/copybara/entrypoint.sh"]
