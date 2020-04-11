@@ -18,34 +18,32 @@ WORKDIR /usr/src/copybara
 
 COPY . .
 
-RUN bazel build //java/com/google/copybara:copybara_deploy.jar \
-    && mkdir -p /tmp/copybara \
-    && cp bazel-bin/java/com/google/copybara/copybara_deploy.jar /tmp/copybara/
+RUN printenv
 
-FROM golang:latest AS buildtools
+# RUN bazel build //java/com/google/copybara:copybara_deploy.jar \
+#     && mkdir -p /tmp/copybara \
+#     && cp bazel-bin/java/com/google/copybara/copybara_deploy.jar /tmp/copybara/
 
-RUN go get github.com/bazelbuild/buildtools/buildozer
-RUN go get github.com/bazelbuild/buildtools/buildifier
+# FROM golang:latest AS buildtools
 
-FROM openjdk:8-jre-slim
-COPY --from=build /tmp/copybara/ /opt/copybara/
-COPY --from=buildtools /go/bin/buildozer /go/bin/buildifier /usr/bin/
-COPY .docker/entrypoint.sh /usr/local/bin/copybara/entrypoint.sh
+# RUN go get github.com/bazelbuild/buildtools/buildozer
+# RUN go get github.com/bazelbuild/buildtools/buildifier
 
-RUN chmod +x /usr/local/bin/copybara
-RUN chmod +x /usr/local/bin/copybara/entrypoint.sh
+# FROM openjdk:8-jre-slim
+# COPY --from=build /tmp/copybara/ /opt/copybara/
+# COPY --from=buildtools /go/bin/buildozer /go/bin/buildifier /usr/bin/
+# COPY .docker/entrypoint.sh /usr/local/bin/copybara/entrypoint.sh
 
-# Install git for fun times
-RUN apt-get update \
-    && apt-get install -y git \
-    && apt-get clean
+# RUN chmod +x /usr/local/bin/copybara
+# RUN chmod +x /usr/local/bin/copybara/entrypoint.sh
 
-WORKDIR /usr/src/app
+# # Install git for fun times
+# RUN apt-get update \
+#     && apt-get install -y git \
+#     && apt-get clean
 
-RUN git clone $INPUT_GITHUB
-# git clone repo into the above directory
+# WORKDIR /usr/src/app
+# RUN git clone $INPUT_GITHUB
 
-RUN echo $INPUT_SUBCOMMAND
-
-# Code file to execute when the docker container starts up (`entrypoint.sh`)
-ENTRYPOINT ["/usr/local/bin/copybara/entrypoint.sh"]
+# # Code file to execute when the docker container starts up (`entrypoint.sh`)
+# ENTRYPOINT ["/usr/local/bin/copybara/entrypoint.sh"]
